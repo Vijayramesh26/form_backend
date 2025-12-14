@@ -1,0 +1,22 @@
+package routes
+
+import (
+	"form/controllers"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+)
+
+func SetupRoutes() *gin.Engine {
+	r := gin.Default()
+	r.Use(cors.Default())
+
+	r.POST("/identity", controllers.SaveIdentity)
+	r.POST("/address", controllers.SaveAddress)
+	r.POST("/promoters", controllers.SavePromoters)
+	r.POST("/bank", controllers.SaveBank)
+	r.POST("/trading", controllers.SaveTrading)
+	r.POST("/additional", controllers.SaveAdditional)
+
+	return r
+}

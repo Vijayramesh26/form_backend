@@ -1,0 +1,19 @@
+package controllers
+
+import (
+	"form/config"
+	"form/models"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+func SaveBank(c *gin.Context) {
+	var bank models.Bank
+	if err := c.BindJSON(&bank); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"success": false})
+		return
+	}
+	config.DB.Create(&bank)
+	c.JSON(http.StatusOK, gin.H{"success": true})
+}
