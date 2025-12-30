@@ -11,7 +11,11 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := "root:root@tcp(localhost:3306)/kyc_demo?charset=utf8mb4&parseTime=True&loc=Local"
+
+	// Example using os.Getenv
+dsn := os.Getenv("DATABASE_URL")  
+	
+	// dsn := "root:root@tcp(localhost:3306)/kyc_demo?charset=utf8mb4&parseTime=True&loc=Local"
 
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
