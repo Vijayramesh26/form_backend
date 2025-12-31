@@ -8,6 +8,8 @@ import (
 )
 
 func main() {
+	config.ConnectDB()
+
 	r := gin.Default()
 
 	// CORS
@@ -22,7 +24,6 @@ func main() {
 		c.Next()
 	})
 
-	config.ConnectDB()
 	routes.RegisterRoutes(r)
 
 	r.Run(":26301")
